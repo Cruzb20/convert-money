@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Pantasya - Javascript</title>
+</head>
+<body>
+  <button onclick="load('http://127.0.0.1:5500/test-36/page-01.html',cb0)">page 0</button>
+  <button onclick="load('page-01.html',cb1)">page 1</button>
+  <div id="demo"></div>
+
+  <script>
+
+    function load(url, cb) {
+      var httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+            cb(httpRequest.responseText);
+          } else {
+            alert('There was a problem with the request.');
+          }
+        }
+      };
+
+      httpRequest.open("GET", url, true);
+      httpRequest.send();
+    }
+
+    function cb0(data) {
+      document.getElementById("demo").innerHTML = data;
+      alert("page 0 loaded");
+    }
+    
+    function cb1(data) {
+      document.getElementById("demo").innerHTML = data;
+      alert("page 1 loaded");
+    }
+        
+  </script>
+</body>
+</html>

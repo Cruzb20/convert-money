@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Try It Yourself</title>
+</head>
+<body>
+  <button id="myBtn" onclick="sendGetRequest('index.html')">Send GET Request</button>
+  <p id="demo"></p>
+
+  <script>
+
+    function sendGetRequest(url) {
+      var httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+            document.getElementById("demo").innerHTML = httpRequest.responseText;
+          } else {
+            alert('There was a problem with the request.');
+          }
+        }
+      };
+
+      // Use forward slashes "/" in the URL for local file access
+      httpRequest.open("GET", url, true);
+      httpRequest.send();
+    }
+  </script>
+</body>
+</html>
